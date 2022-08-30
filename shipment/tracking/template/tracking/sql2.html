@@ -1,0 +1,112 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <title>INSEE Logistics Excellent BOT Portal Website</title>
+  <meta name="description" content="website description" />
+  <meta name="keywords" content="website keywords, website keywords" />
+  <meta http-equiv="content-type" content="text/html; charset=windows-1252" />
+  {% load static %}
+  <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}" />
+</head>
+
+<body>
+  <div id="main">
+    <div id="header">
+      <div id="logo">
+        <div id="logo_text">
+          <!-- class="logo_colour", allows you to change the colour of the text -->
+          <h1><a href="/">INSEE_LogEX<span class="logo_colour">BOT Portal</span></a></h1>
+          <h2>Simpler. Faster. Better. Logistics Excellent BOT Portal Website.</h2>
+        </div>
+      </div>
+      
+     {% if user.is_authenticated %}
+      
+      <div id="menubar">
+        <ul id="menu">
+          <!-- put class="selected" in the li tag for the selected page - to highlight which page you're on -->
+          <li class="selected"><a href="/">Home</a></li>
+          <li><a href="/bot/">Run BOT</a></li>
+          <li><a href="/sql/">SQL Page</a></li>
+          <li><a href="/another/">BOT & Parameter</a></li>
+          <li><a href="/contact/">Contact Us</a></li>
+        </ul>
+      </div>
+    </div>
+    <div id="site_content">
+      <div class="sidebar">
+        <!-- insert your sidebar items here -->
+        <h3>Latest News</h3>
+        <h4>New Website Launched</h4>
+        <h5>January 1st, 2010</h5>
+        <p>2010 sees the redesign of our website. Take a look around and let us know what you think.<br /><a href="#">Read more</a></p>
+        <p></p>
+        
+        <h4>Browser Compatibility for Running BOT</h4>
+        <p>This template has been tested in the following browsers:</p>
+          <li>Google Chrome 6</li>
+          <li>Microsoft Edge</li>
+          <li>Internet Explorer 7</li>
+          <li>FireFox 3.5</li>
+          <li>Safari 4</li>
+          
+          
+        <h3>Useful Links</h3>
+        <ul>
+          <li><a href="https://www.siamcitycement.com/th/our_services/logistics/" target="_blank">INSEE Logistics</a></li>
+          <li><a href="https://myservices.em2.oraclecloud.com/" target="_blank">OTM Website</a></li>
+          <li><a href="https://inseepms.siamcitycement.com/account/user/login" target="_blank">INSEE PMS</a></li>
+          <li><a href="https://inseegroup-my.sharepoint.com/:x:/r/personal/thanya_leelahabooniem_siamcitycement_com/_layouts/15/doc2.aspx?sourcedoc=%7B4a6b199f-a8eb-4945-951e-80755fd5a2f7%7D&action=default&uid=%7B4A6B199F-A8EB-4945-951E-80755FD5A2F7%7D&ListItemId=87&ListId=%7B53E8369B-202E-4B69-B8B1-69ABE20400A2%7D&odsp=1&env=prod&cid=72325016-86c3-444f-aaa5-061d1b88df4c" target="_blank">Holiday Staff</a></li>
+        </ul>
+        <h3>Search</h3>
+        <form method="post" action="#" id="search_form">
+          <p>
+            <input class="search" type="text" name="search_field" value="Enter keywords....." />
+            <input name="search" type="image" style="border: 0; margin: 0 0 -9px 5px;" src="{% static 'search.png' %}" alt="Search" title="Search" />
+          </p>
+        </form>
+      </div>
+      <div id="content">
+        <!-- insert the page content here -->
+        <h1>Welcome to INSEE Logistics Excellent BOT Portal</h1>
+        <p>Logistics start to used RPA (Robotic Process Automation) since Year 2020</p> 
+        
+        <span class="Center"><img src="{% static 'automation.png' %}" alt="example graphic" /></span>
+        <p>
+            We have benefit from RPA process as below.
+            <br>1. Reduce : human error from 3% - 5% to less than 1%
+            <br>2. Faster : RPA faster than 2x to 5x from human process
+            <br>3. Multitask : One machine can run process > 4 process parallel
+            <br>4. Running : 24 Hours and 7 Days 
+            <br>5. Enhancement : Easy to enhance program  
+        </p>
+
+        <p>This Web Portal is a fully consolidate BOT for SCCC users can access and run bot from BOT Server</p>
+        
+        <p><span class="Center"><img src="{% static 'bot.png' %}" alt="example graphic" /></span></p>
+        <h2>Selenium BOT</h2>
+        <p>Selenium is Software framework for automate running on Web Browser which can support IE, Chrome, Firefox, Opera and Safari</p>
+
+        <h2>Why is Selenium</h2> 
+        <p>Selenium is powerful web automation framework which support many programming language such as  PyThon and Java</p>
+        <p>Selenium can connect directly with HTML code in the webpage that faster, more accuracy and  can running parallel many process in onetime</p>
+        <p>A lot of support from community such as Stack overflow, GitHub</>
+        
+      </div>
+    </div>
+    
+    {% else %}
+    <div id="footer">
+      You are not Logged in for Access BOT Portal : Please Login >>><a href="/login/">Login</a> 
+    </div> 
+    {% endif %}
+    
+    
+    <div id="footer">
+      Copyright &copy; Siam City Cement. All Rights Reserved 2021 | <a href="https://www.siamcitycement.com/th/our_services/logistics/">INSEE Logistics</a> 
+    </div>
+  </div>
+</body>
+</html>
+

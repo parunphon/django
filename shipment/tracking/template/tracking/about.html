@@ -1,0 +1,123 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <title>INSEE Logistics Excellent BOT Portal Website</title>
+  <meta name="description" content="website description" />
+  <meta name="keywords" content="website keywords, website keywords" />
+  <meta http-equiv="content-type" content="text/html; charset=windows-1252" />
+    
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>jQuery UI Datepicker - Display button bar</title>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  
+  <script>
+      $( function() {
+        $( "#datepicker1" ).datepicker({
+          dateFormat: 'yy-mm-dd'
+        });
+        $( "#datepicker2" ).datepicker({
+          dateFormat: 'yy-mm-dd'
+        });
+      } );
+  </script>
+   
+  {% load static %}
+  <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}" />
+</head>
+
+<body>
+  <div id="main">
+    <div id="header">
+      <div id="logo">
+        <div id="logo_text">
+          <!-- class="logo_colour", allows you to change the colour of the text -->
+          <h1><a href="/">INSEE_LogEX<span class="logo_colour">BOT Portal</span></a></h1>
+          <h2>Simpler. Faster. Bester. Logistics Excellent BOT Portal Website.</h2>
+        </div>
+      </div>
+      <div id="menubar">
+        <ul id="menu">
+          <!-- put class="selected" in the li tag for the selected page - to highlight which page you're on -->
+          <li><a href="/">Home</a></li>
+          <li><a href="/bot/">BOT Page</a></li>
+          <li class="selected"><a href="/sql/">SQL Page</a></li>
+          <li><a href="/another/">Another Page</a></li>
+          <li><a href="/contact/">Contact Us</a></li>
+        </ul>
+      </div>
+    </div>
+    <div id="content_header"></div>
+    <div id="site_content">
+      <div class="sidebar">
+        <!-- insert your sidebar items here -->
+        <h3>Latest News</h3>
+        <h4>New Website Launched</h4>
+        <h5>January 1st, 2010</h5>
+        <p>2010 sees the redesign of our website. Take a look around and let us know what you think.<br /><a href="#">Read more</a></p>
+        <p></p>
+
+        <h4>Browser Compatibility for Running BOT</h4>
+        <p>This template has been tested in the following browsers:</p>
+          <li>Google Chrome 6</li>
+          <li>Microsoft Edge</li>
+          <li>Internet Explorer 7</li>
+          <li>FireFox 3.5</li>
+          <li>Safari 4</li>
+        
+        <h3>Search</h3>
+        <form method="post" action="#" id="search_form">
+          <p>
+            <input class="search" type="text" name="search_field" value="Enter keywords....." />
+            <input name="search" type="image" style="border: 0; margin: 0 0 -9px 5px;" src="{% static 'search.png' %}" alt="Search" title="Search" />
+          </p>
+        </form>
+      </div>
+      <div id="content">
+        <!-- insert the page content here -->
+        <h1>SQL Execution Interface</h1>
+        <p>Below is an example of how a contact form might look with this template:</p>
+        <form action="" method="post">
+          <div class="form_settings">
+            <p><span>Name of Exiting Query</span>
+            <select id="id" name="Exiting_SQL">
+            <option value="Used Below SQL">Used Below SQL</option>
+            <option value="Shipment_cost_by_do.sql">Shipment_cost_by_do</option>
+            <option value="Shipment_Report.sql">Shipment_Report</option>
+            <option value="DW_Duplicated_Shipment.sql">DW_Duplicated_Shipment</option>
+            <option value="OTM_Shipment_OrderRelease_Pending.sql">OTM_Shipment_OrderRelease_Pending</option>
+            <option value="OTM_Master_Trucks_Expire.sql">OTM_Master_Trucks_Expire</option>
+            <option value="Order_release_pending.sql">Order_release_pending</option>
+            <option value="OTM_Master_Drivers_Expire.sql">OTM_Master_Drivers_Expire</option>
+            <option value="Shipment_OrderRelease_Pending.sql">Shipment_OrderRelease_Pending</option>
+            <option value="Master_Location.sql">Master_Location</option>
+            </select></p>
+
+            <p><span>SQL</span><textarea class="contact textarea" rows="20" cols="50" name="NEW_SQL"></textarea></p>
+            <p><span>Date From</span><input class="contact" type="text" id="datepicker1" name="date_from" value="" /></p>
+            <p><span>Date To</span><input class="contact" type="text" id="datepicker2" name="date_to" value="" /></p>
+
+            {% csrf_token %}          
+            <p style="padding-top: 15px"><span>&nbsp;</span><input class="submit" type="submit" name="sql_submitted" value="submit" onclick="return confirm('Do you want to run query ?');" /></p>
+            </div>
+
+            {% if some_flag %}
+                <script>
+                    alert("Finished : SQL " + '{{ script_name }}'  + " has been finished already.");
+                </script>    
+            {% endif %}
+
+        </form>
+        <p><br /><br />NOTE: The Prarameter box will be eanable or disable by selected SQL in dropdown list box.</p>
+      </div>
+    </div>
+    <div id="content_footer"></div>
+    <div id="footer">
+      Copyright &copy; Siam City Cement. All Rights Reserved 2021 | <a href="https://www.siamcitycement.com/th/our_services/logistics/">INSEE Logistics</a> 
+    </div>
+  </div>
+</body>
+</html>

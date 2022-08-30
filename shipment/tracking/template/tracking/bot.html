@@ -1,0 +1,346 @@
+<!DOCTYPE HTML>
+<html>
+
+<script>
+    function GetSelectedText(group_bot){
+        var e = document.getElementById(group_bot);
+        var result = e.options[e.selectedIndex].text;
+        return confirm('Do you want to run BOT : ' + result + '  ?');
+    }
+</script>
+
+<!Script for Waiting Sign>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
+
+<script>
+$(function($) {
+"use strict";
+    // global hook - unblock UI when ajax request completes
+    $(document).ajaxStop($.unblockUI);
+    $('#no').bind('click', $.unblockUI);
+});
+
+ $(document).ready(function() {
+    $('.my-form').submit(function() {
+        $.blockUI({ css: {
+            border: 'none',
+            padding: '15px',
+            backgroundColor: '#000',
+            '-webkit-border-radius': '10px',
+            '-moz-border-radius': '10px',
+            opacity: .5,
+            color: '#fff'
+        } });
+        setTimeout($.unblockUI, 30000);
+    }); 
+    $( "#datepicker1" ).datepicker({
+      dateFormat: 'yy-mm-dd'
+    });
+    $( "#datepicker2" ).datepicker({
+      dateFormat: 'yy-mm-dd'
+    });
+});
+</script>
+
+<head>
+  <title>INSEE Logistics Excellent BOT Portal Website</title>
+  <meta name="description" content="website description" />
+  <meta name="keywords" content="website keywords, website keywords" />
+  <meta http-equiv="content-type" content="text/html; charset=windows-1252" />
+  {% load static %}
+  <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}" />
+</head>
+           
+<body>
+  <div id="main">
+    <div id="header">
+      <div id="logo">
+        <div id="logo_text">
+          <!-- class="logo_colour", allows you to change the colour of the text -->
+          <h1><a href="/">INSEE_LogEX<span class="logo_colour">BOT Portal</span></a></h1>
+          <h2>Simpler. Faster. Better. Logistics Excellent BOT Portal Website.</h2>
+        </div>
+      </div>
+
+
+<!-- ############## Check User Authenticated ############# -->
+
+    {% if user.is_authenticated %}
+    
+<!-- ############## Check User Group ############# -->
+
+      {% for group in user.groups.all %}
+        {% if group.name == 'admin' %}
+        
+<!-- ############################### Admin Group Page ################################################### -->
+    <!-- ############## Menu Content ############# -->
+    <div id="menubar">
+        <ul id="menu">
+          <!-- put class="selected" in the li tag for the selected page - to highlight which page you're on -->
+          <li><a href="/">Home</a></li>
+          <li class="selected"><a href="/bot/">Run BOT</a></li>
+          <li><a href="/sql/">SQL Page</a></li>
+          <li><a href="/botlog/">BOT & Log</a></li>
+          <li><a href="/another/">BOT & Parameter</a></li>
+          <li><a href="/contact/">Contact Us</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ############## Header Content ############# -->
+    <div id="content_header"></div>
+    <div id="site_content">
+      <div class="sidebar">
+        <!-- insert your sidebar items here -->
+        <h3>Latest News</h3>
+        <h4>New BOT Portal Website Launched</h4>
+        <h5>August 02, 2021</h5>
+        <p>2021 sees the design and function of our bot portal website. Take a look around and let us know what you think.<br />
+        <p></p>
+        
+        <h4>Browser Compatibility for Running BOT</h4>
+        <p>This template has been tested in the following browsers:</p>
+          <li>Google Chrome 6</li>
+          <li>Microsoft Edge</li>
+          <li>Internet Explorer 7</li>
+          <li>FireFox 3.5</li>
+          <li>Safari 4</li>
+        
+        <h3>Search</h3>
+        <form method="post" action="#" id="search_form">
+          <p>
+            <input class="search" type="text" name="search_field" value="Enter keywords....." />
+            <input name="search" type="image" style="border: 0; margin: 0 0 -9px 5px;" src="{% static 'search.png' %}" alt="Search" title="Search" />
+          </p>
+        </form>
+      </div> 
+      
+      <div id="content">
+        <!-- insert the page content here -->
+        <h4>Role : SCCC OTM Admin (Admin)</h4>
+        <h1>Auto Assign</h1>
+       <form action="" method="post" class="my-form">
+          <div class="form_settings">
+            <p><span>Auto Assign Step1/Group Step2</span>
+            <br><select id="Auto_Assign_Step1" name="name">            
+            <option value="__A01_AutoAllocation_FairShare.bat">A01_AutoAllocation_FairShare</option>
+            <option value="__A01_AutoAllocation_Naive.bat">A01_AutoAllocation_Naive</option>
+            <option value="__A01_AutoAllocation_SelectedOrder_Fairshare.bat">A01_AutoAllocation_FairShare_Selected_Order</option>
+            <option value="__A01_AutoAllocation_SelectedOrder_Naive.bat">A01_AutoAllocation_Naive_Selected_Order</option>            
+            <option value="__A01_AutoAllocation_Naive_DBP.bat">A01_AutoAllocation_Naive_DBP</option>
+            <option value="__A01_AutoAllocation_6W_Short_Long.bat">A01_AutoAllocation_6W_Short_Long</option>
+            <option value="__A01_AutoAllocation_FairShare6WKDC.bat">A01_AutoAllocation_FairShare6WKDC</option>
+            <option value="__A01_AutoAllocation_FairShare6WKDC_Preload.bat">A01_AutoAllocation_FairShare6WKDC_Preload</option>           
+            <option value="__A02_AutoAssign_Process_Control_VM.bat">A02_AutoAssign_Process_Control_Step2_Group1</option>
+            <option value="__A02_AutoAssign_Process_Control_VM2.bat">A02_AutoAssign_Process_Control_Step2_Group2</option>
+            <option value="__A02_AutoAssign_Process_Control_VM3.bat">A02_AutoAssign_Process_Control_Step2_Group3</option>
+            <option value="__A02_AutoAssign_Process_Control_VM4.bat">A02_AutoAssign_Process_Control_Step2_Group4</option>
+            <option value="__A02_AutoAssign_Process_Control_VM5_SelectedOrder.bat">A02_AutoAssign_Process_Control_Step2_Group5_Selected_Order</option>
+            <option value="OP99_AutoAssign_UpdateStatus_Tender_PRD.py">OP99_AutoAssign_UpdateStatus_Tender_PRD</option>
+            </select></p>
+            
+            {% csrf_token %}
+            <style="padding-top: 15px"><span>&nbsp;</span><input class="submit" type="submit" name="AA_STEP_01" value="button" onclick="return GetSelectedText('Auto_Assign_Step1')" /></p>
+          </div>
+        </form>
+        
+       <h1>Other Daily & Weekly BOT</h1>
+       <form action="" method="post" class="my-form">
+          <div class="form_settings">
+            <p><span>Other Daily & Weekly BOT</span>
+            <br><select id="Other_Daily" name="name">
+            <option value="OP51_AutoAssign_STO_PRD.py">OP51_AutoAssign_STO_PRD</option>
+            <option value="PyThon_Bot_UpdateGpsAll.bat">UpdateGpsAll</option>
+            <option value="PyThon_Bot_Check_Pallet_CPDO_Delete.bat">Check_Pallet_CPDO_Delete</option>
+            <option value="PyThon_Bot_Check_SafePac_CPDO_Delete.bat">Check_SafePac_CPDO_Delete</option>
+            <option value="PyThon_Bot_UpdateStatusInplant.bat">UpdateStatusInplant</option>
+            <option value="PyThon_Bot_DailyCloseShipmentILM.bat">DailyCloseShipmentILM</option>
+            <option value="PyThon_Bot_OTM_Query_ECO_Shipment.bat">OTM_Query_ECO_Shipment</option>
+            <option value="PyThon_Bot_Pending_Shipment_Suggest_DeliveryDate.bat">Pending_Shipment_Suggest_DeliveryDate</option>
+            <option value="PyThon_Bot_Update_Missing_Weightout_Date.bat">Update_Missing_Weightout_Date</option>
+            <option value="PyThon_Bot_Update_Sum_Cost_DO_vs_SH.bat">Bot_Update_Sum_Cost_DO_vs_SH</option>
+            </select></p>
+            {% csrf_token %}
+            <style="padding-top: 15px"><span>&nbsp;</span><input class="submit" type="submit" name="OTHER_DAILY" value="button" onclick="return GetSelectedText('Other_Daily')" /></p>
+          </div>
+        </form>
+        
+        <h1>Other BOT & Reports</h1>
+        <form action="" method="post" class="my-form">
+          <div class="form_settings">
+            <p><span>Other BOT</span>
+            <br><select id="Other_Bot" name="name">
+            <option value="Export_GPS_TrackMonitoring_PRD.bat">Export_GPS_TrackMonitoring</option>
+            <option value="__R04_Ontime_Report.bat">R04_Ontime_Report</option>
+            <option value="__R05_DL_tracking.bat">R05_DL_tracking</option>            
+            <option value="__T03_DW_Query.bat">T03_DW_Query</option>            
+            <option value="__T03_OTM_Query.bat">T03_OTM_Query</option>            
+            <option value="__T04_DW_Delete_PreDO_Shipment.bat">T04_DW_Delete_PreDO_Shipment</option>
+            <option value="Send_TeamViewer_PRD.py">Send_TeamViewer_PRD</option>
+            </select></p>
+            
+            {% csrf_token %}
+            <style="padding-top: 15px"><span>&nbsp;</span><input class="submit" type="submit" name="OTHER_BOT" value="button" onclick="return GetSelectedText('Other_Bot')" /></p>
+          </div>
+        </form>
+           
+<!-- ############################### End of Admin Group Page ############################################ -->
+
+{% elif group.name == 'lcc'  %} 
+         
+<!-- ############################### LCC Group Page ##################################################### -->
+    <!-- ############## Menu Content ############# -->
+    <div id="menubar">
+        <ul id="menu">
+          <!-- put class="selected" in the li tag for the selected page - to highlight which page you're on -->
+          <li><a href="/">Home</a></li>
+          <li class="selected"><a href="/bot/">Run BOT</a></li>
+          <li><a href="/another/">BOT & Parameter</a></li>
+          <li><a href="/contact/">Contact Us</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ############## Header Content ############# -->
+    <div id="content_header"></div>
+    <div id="site_content">
+      <div class="sidebar">
+        <!-- insert your sidebar items here -->
+        <h3>Latest News</h3>
+        <h4>New BOT Portal Website Launched</h4>
+        <h5>August 02, 2021</h5>
+        <p>2021 sees the design and function of our bot portal website. Take a look around and let us know what you think.<br />
+        <p></p>
+        
+        <h4>Browser Compatibility for Running BOT</h4>
+        <p>This template has been tested in the following browsers:</p>
+          <li>Google Chrome 6</li>
+          <li>Microsoft Edge</li>
+          <li>Internet Explorer 7</li>
+          <li>FireFox 3.5</li>
+          <li>Safari 4</li>
+        
+        <h3>Search</h3>
+        <form method="post" action="#" id="search_form">
+          <p>
+            <input class="search" type="text" name="search_field" value="Enter keywords....." />
+            <input name="search" type="image" style="border: 0; margin: 0 0 -9px 5px;" src="{% static 'search.png' %}" alt="Search" title="Search" />
+          </p>
+        </form>
+      </div> 
+      
+      <!-- ############## Main Content ############# -->
+      <div id="content">
+        <!-- insert the page content here -->
+        <h4>Role : Logistics Control Center (LCC)</h4>
+        <h1>Auto Assign</h1>
+       <form action="" method="post" class="my-form">
+          <div class="form_settings">
+            <p><span>Auto Assign Step1/Group Step2</span>
+            <br><select id="Auto_Assign_Step1" name="name">            
+            <option value="__A01_AutoAllocation_FairShare.bat">A01_AutoAllocation_FairShare</option>
+            <option value="__A01_AutoAllocation_Naive.bat">A01_AutoAllocation_Naive</option>
+            <option value="__A01_AutoAllocation_SelectedOrder_Fairshare.bat">A01_AutoAllocation_FairShare_Selected_Order</option>
+            <option value="__A01_AutoAllocation_SelectedOrder_Naive.bat">A01_AutoAllocation_Naive_Selected_Order</option>            
+            <option value="__A01_AutoAllocation_Naive_DBP.bat">A01_AutoAllocation_Naive_DBP</option>
+            <option value="__A01_AutoAllocation_6W_Short_Long.bat">A01_AutoAllocation_6W_Short_Long</option>
+            <option value="__A01_AutoAllocation_FairShare6WKDC.bat">A01_AutoAllocation_FairShare6WKDC</option>
+            <option value="__A01_AutoAllocation_FairShare6WKDC_Preload.bat">A01_AutoAllocation_FairShare6WKDC_Preload</option>           
+            <option value="__A02_AutoAssign_Process_Control_VM.bat">A02_AutoAssign_Process_Control_Step2_Group1</option>
+            <option value="__A02_AutoAssign_Process_Control_VM2.bat">A02_AutoAssign_Process_Control_Step2_Group2</option>
+            <option value="__A02_AutoAssign_Process_Control_VM3.bat">A02_AutoAssign_Process_Control_Step2_Group3</option>
+            <option value="__A02_AutoAssign_Process_Control_VM4.bat">A02_AutoAssign_Process_Control_Step2_Group4</option>
+            <option value="__A02_AutoAssign_Process_Control_VM5_SelectedOrder.bat">A02_AutoAssign_Process_Control_Step2_Group5_Selected_Order</option>
+            <option value="OP99_AutoAssign_UpdateStatus_Tender_PRD.py">OP99_AutoAssign_UpdateStatus_Tender_PRD</option>       
+            </select></p>
+            
+            {% csrf_token %}
+            <style="padding-top: 15px"><span>&nbsp;</span><input class="submit" type="submit" name="AA_STEP_01" value="button" onclick="return GetSelectedText('Auto_Assign_Step1')" /></p>
+          </div>
+        </form>
+        
+        <form action="" method="post" class="my-form">
+          <div class="form_settings">
+            <p><span>Auto Assign Step 2</span>
+            <br><select id="Auto_Assign_Step2" name="name">
+            <option value="OP03_AutoAssign_Bag_6W_Short_PRD.py">OP03_AutoAssign_Bag_6W_Short_PRD</option>            
+            <option value="OP03_AutoAssign_Bag_6W_Long_PRD.py">OP03_AutoAssign_Bag_6W_Long_PRD</option>
+            <option value="OP03_2_AutoAssign_Bag_6W_LONG_FOURSUMMIT_PRD.py">OP03_2_AutoAssign_Bag_6W_LONG_FOURSUMMIT_PRD</option>
+            <option value="OP03_2_AutoAssign_Bag_6W_SHORT_FOURSUMMIT_PRD.py">OP03_2_AutoAssign_Bag_6W_SHORT_FOURSUMMIT_PRD</option>
+            <option value="OP04_AutoAssign_BulkEast_PRD.py">OP04_AutoAssign_BulkEast_PRD</option>
+            <option value="OP05_AutoAssign_BulkInnerPool_PRD.py">OP05_AutoAssign_BulkInnerPool_PRD</option>
+            <option value="OP05-1_AutoAssign_BULK_18W_SHIPTO_PRD.py">OP05-1_AutoAssign_BULK_18W_SHIPTO_PRD</option>
+            <option value="OP05-2_AutoAssign_BULK_18W_SHIPTO_RAB_PRD.py">OP05-2_AutoAssign_BULK_18W_SHIPTO_RAB_PRD</option>
+            <option value="OP06_AutoAssing_BulkOuterPool_PRD.py">OP06_AutoAssing_BulkOuterPool_PRD</option>
+            <option value="OP07_AutoAssign_BulkLowerNorth_PRD.py">OP07_AutoAssign_BulkLowerNorth_PRD</option>
+            <option value="OP08_AutoAssign_BulkUpperNorth_PRD.py">OP08_AutoAssign_BulkUpperNorth_PRD</option>
+            <option value="OP09-1_AutoAssign_BagNorthEast1_PRD.py">OP09-1_AutoAssign_BagNorthEast1_PRD</option>
+            <option value="OP09-2_AutoAssign_BagNorthEast2_PRD.py">OP09-2_AutoAssign_BagNorthEast2_PRD</option>
+            <option value="OP09-3_AutoAssign_BagNorthEast3_PRD.py">OP09-3_AutoAssign_BagNorthEast3_PRD</option>
+            <option value="OP09-4_AutoAssign_BagNorthEast4_PRD.py">OP09-4_AutoAssign_BagNorthEast4_PRD</option>
+            <option value="OP10_AutoAssing_Bulk10W_PRD.py">OP10_AutoAssing_Bulk10W_PRD</option>
+            <option value="OP10-1_AutoAssing_Bulk10W_SHIPTO_PRD.py">OP10-1_AutoAssing_Bulk10W_SHIPTO_PRD</option>
+            <option value="OP11_AutoAssign_Bag_10W_PRD.py">OP11_AutoAssign_Bag_10W_PRD</option>
+            <option value="OP12_AutoAssign_Bag_18W_CMICPP_PRD.py">OP12_AutoAssign_Bag_18W_CMICPP_PRD</option>
+            <option value="OP13_AutoAssign_Bag_18W_CMIC_PRD.py">OP13_AutoAssign_Bag_18W_CMIC_PRD</option>
+            <option value="OP14_AutoAssign_BAG18W_LOWERNORTH_PRD.py">OP14_AutoAssign_BAG18W_LOWERNORTH_PRD</option>
+            <option value="OP15_AutoAssign_BAG18W_UPPERNORTH_PRD.py">OP15_AutoAssign_BAG18W_UPPERNORTH_PRD</option>
+            <option value="OP16_AutoAssign_BulkPoolDBP_PRD.py">OP16_AutoAssign_BulkPoolDBP_PRD</option>
+            <option value="OP17_AutoAssing_BULK_18W_NE_PRD.py">OP17_AutoAssing_BULK_18W_NE_PRD</option>
+            <option value="OP99_AutoAssign_UpdateStatus_Tender_PRD.py">OP99_AutoAssign_UpdateStatus_Tender_PRD</option>
+            </select></p>
+            
+            {% csrf_token %}
+            <style="padding-top: 15px"><span>&nbsp;</span><input class="submit" type="submit" name="AA_STEP_02" value="button" onclick="return GetSelectedText('Auto_Assign_Step2')" /></p>
+          </div>
+        </form>
+
+        
+        <h1>Other BOT & Reports</h1>
+        <form action="" method="post" class="my-form">
+          <div class="form_settings">
+            <p><span>Other BOT</span>
+            <br><select id="Other_Bot" name="name">
+            <option value="Export_GPS_TrackMonitoring_PRD.bat">Export_GPS_TrackMonitoring</option>
+            <option value="__S01_Shipment_Report_byDO.bat">S01_Shipment_Report_byDO</option>
+            <option value="OP51_AutoAssign_STO_PRD.py">OP51_AutoAssign_STO_PRD</option>
+            <option value="OP52_AutoAssign_NonCement_PRD.py">OP52_AutoAssign_NonCement_PRD</option>
+            <option value="LatlonuploadtoOTM.py">Update_GPS_LatLong_OTM</option>
+
+            </select></p>
+            
+            {% csrf_token %}
+            <style="padding-top: 15px"><span>&nbsp;</span><input class="submit" type="submit" name="OTHER_BOT" value="button" onclick="return GetSelectedText('Other_Bot')" /></p>
+          </div>
+        </form>
+                   
+<!-- ############################### End of LCC Group Page ############################################ -->
+        {% endif %}
+      {% endfor %}
+      
+          <!-- ############## Check Flag Result ############# -->
+           {% if some_flag %}
+                <div id="dialog-confirm" title="Complete Run BOT with Parameter ?">
+                  <p><span style="float:left; margin:12px 12px 15px 0;"></span>Run BOT with Paramete has been finished <br> Do you want to continue without Log File ?</p>
+                </div>
+            {% endif %}
+      </div>
+    </div>
+
+    {% else %}
+    
+    <!-- ############## Footer Content ############# -->
+    <div id="footer">
+      You are not Logged in for Access BOT Portal : Please Login >>><a href="/login/">Login</a> 
+    </div>
+    
+    {% endif %}
+
+    <div id="content_footer"></div>
+    <div id="footer">
+      Copyright &copy; Siam City Cement. All Rights Reserved 2021 | <a href="https://www.siamcitycement.com/th/our_services/logistics/">INSEE Logistics</a> 
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,61 @@
+{% extends 'tracking/base.html' %}
+
+    {% block content %}
+    
+        <h1>Search Page</h1>
+
+      <p>Search with Shipment id</p>
+      <form id = "form1" method="POST">
+      {% csrf_token %}
+        <div class="form-group">
+          <label for="search">Search</label>
+          <input type="text" class="form-control" id="search" name="search">
+        </div>
+        <button form="form1" type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    </div>
+    
+{%comment%}
+    {% for d in data %}
+        <h3>{{forloop.counter}}:{{d.0}}</h3>
+        <p>
+            Pre Do No : {{d.1}} <br>
+            Delivery order_no : {{d.2}} <br>
+            Net weight qty : {{d.3}} <br>
+            Weight out date : {{d.4}} <br>
+        </p>
+
+    {% endfor %}
+{%endcomment%}
+
+{%if field%}
+        <table class="table">
+          <thead>
+          <tr>
+              {% for f in field %}
+                   <th scope="col">{{f}}</th>
+              
+              {% endfor %}
+           </tr>
+           <thead>
+           <tbody>
+           {% if nodata %}
+             <tr>
+                 <td><center> No Data </center></td>
+             </tr>    
+           {% else %}
+               {% for d in data %}
+                   <tr>
+                       {% for v in d %}
+                           <td>{{v}}</td>
+                       {% endfor %}
+                   </tr>
+               {% endfor %}
+               
+            {% endif %}   
+           </tbody> 
+        </table>
+{%endif%}
+            
+    {% endblock content %}
+    
